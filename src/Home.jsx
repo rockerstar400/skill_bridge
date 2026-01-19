@@ -6,10 +6,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from "./assets/logo.png";
+import { Link } from 'react-router-dom';
+import Header from "./components/Header"
 import {
     Headphones, Database, MessageSquare, Users,
     TrendingUp, ShieldCheck, Mail, Phone, MapPin,
-    CheckCircle, Target, Eye, Menu, X, ArrowRight, Briefcase
+    CheckCircle, Target, Eye, Menu, X, ArrowRight, Briefcase,Server,PhoneCall, Cloud, Lock, Activity, Cpu 
 } from 'lucide-react';
 
 const fadeInUp = {
@@ -54,146 +56,155 @@ const fadeInUp = {
 // };
 
 
-const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+// const Header = () => {
+//     const [isScrolled, setIsScrolled] = useState(false);
+//     const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+//     useEffect(() => {
+//         const handleScroll = () => setIsScrolled(window.scrollY > 20);
+//         window.addEventListener('scroll', handleScroll);
+//         return () => window.removeEventListener('scroll', handleScroll);
+//     }, []);
 
-    const navLinks = [
-        { name: 'Home', id: 'home' },
-        { name: 'About', id: 'about' },
-        { name: 'Services', id: 'services' },
-        { name: 'Contact', id: 'contact' }
-    ];
+//     const navLinks = [
+//         { name: 'Home', id: 'home' },
+//         { name: 'About', id: 'about' },
+//         { name: 'Services', id: 'services' },
+//        { name: 'Careers', path: '/careers' },
+//        { name: 'Contact', id: 'contact' },
+//     ];
 
-    return (
-        <nav className={`fixed top-0 w-full z-[100] transition-all duration-700 ease-in-out ${isScrolled
-                ? 'bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] py-3 border-b border-slate-100'
-                : 'bg-transparent py-7'
-            }`}>
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+//     return (
+//         <nav className={`fixed top-0 w-full z-[100] transition-all duration-700 ease-in-out ${isScrolled
+//                 ? 'bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] py-3 border-b border-slate-100'
+//                 : 'bg-transparent py-7'
+//             }`}>
+//             <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
 
-                {/* 1. PREMIUM LOGO DESIGN */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center cursor-pointer"
-                >
-                    <img src={logo} alt="Skill Bridge Logo" className="h-14 md:h-20 w-auto object-contain drop-shadow-sm" />
-                </motion.div>
+//                 {/* 1. PREMIUM LOGO DESIGN */}
+//                 <motion.div
+//                     initial={{ opacity: 0, x: -20 }}
+//                     animate={{ opacity: 1, x: 0 }}
+//                     whileHover={{ scale: 1.05 }}
+//                     className="flex items-center cursor-pointer"
+//                 >
+//                     <img src={logo} alt="Skill Bridge Logo" className="h-14 md:h-20 w-auto object-contain drop-shadow-sm" />
+//                                        <div className="flex flex-col justify-center border-l-2 border-slate-200 pl-3 md:pl-4">
+//                         <span className="text-sm md:text-xl font-black text-[#0C1C2C] leading-none tracking-tighter uppercase group-hover:text-indigo-600 transition-colors">
+//                             Skill Bridge
+//                         </span>
+//                         <span className="text-[8px] md:text-[10px] font-bold text-[#f89623] uppercase tracking-[0.15em] mt-1">
+//                             Consulting Pvt Ltd
+//                         </span>
+//                     </div>
+//                 </motion.div>
 
-                {/* 2. DESKTOP NAVIGATION (Glassmorphism links) */}
-                <div className="hidden md:flex items-center space-x-10">
-                    {/* <div className="flex items-center space-x-8">
-                        {navLinks.map((link) => (
-                            <a 
-                                key={link.name} 
-                                href={`#${link.id}`} 
-                                className="relative text-[14px] font-bold text-slate-800 uppercase tracking-[0.15em] transition-colors duration-300 hover:text-indigo-600 group"
-                            >
-                                {link.name}
-                              
-                                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-indigo-600 transition-all duration-500 ease-out group-hover:w-full"></span>
-                            </a>
-                        ))}
-                    </div> */}
+//                 {/* 2. DESKTOP NAVIGATION (Glassmorphism links) */}
+//                 <div className="hidden md:flex items-center space-x-10">
+//                     {/* <div className="flex items-center space-x-8">
+//                         {navLinks.map((link) => (
+//                             <a 
+//                                 key={link.name} 
+//                                 href={`#${link.id}`} 
+//                                 className="relative text-[14px] font-bold text-slate-800 uppercase tracking-[0.15em] transition-colors duration-300 hover:text-indigo-600 group"
+//                             >
+//                                 {link.name}
 
-                    <div className="flex items-center space-x-8">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={`#${link.id}`}
-                                className={`relative text-[14px] font-bold uppercase tracking-[0.15em] transition-all duration-300 group ${link.name === 'Home'
-                                        ? 'text-[#f89623]'
-                                        : 'text-slate-800 hover:text-indigo-600'
-                                    }`}
-                            >
-                                {link.name}
+//                                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-indigo-600 transition-all duration-500 ease-out group-hover:w-full"></span>
+//                             </a>
+//                         ))}
+//                     </div> */}
 
-                                {/* Elegant Underline Logic */}
-                                <span className={`absolute -bottom-1 left-0 h-[2px] transition-all duration-500 ease-out ${link.name === 'Home'
-                                        ? 'w-full bg-[#f89623]'
-                                        : 'w-0 bg-indigo-600 group-hover:w-full'
-                                    }`}></span>
-                            </a>
-                        ))}
-                    </div>
-                    {/* hnfhjhhjhdshd?jfdhfdjjdf jksdpsd sduji f dorie fmm  ksdofire fd hdff dfdj      fh */}
+//                     <div className="flex items-center space-x-8">
+//                         {navLinks.map((link) => (
+//                             <a
+//                                 key={link.name}
+//                                 href={`#${link.id}`}
+//                                 className={`relative text-[14px] font-bold uppercase tracking-[0.15em] transition-all duration-300 group ${link.name === 'Home'
+//                                         ? 'text-[#f89623]'
+//                                         : 'text-slate-800 hover:text-indigo-600'
+//                                     }`}
+//                             >
+//                                 {link.name}
 
-                    {/* 3. PREMIUM CTA BUTTON */}
-                    <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="relative overflow-hidden bg-[#0C1C2C] text-white px-8 py-3.5 rounded-full text-[13px] font-black uppercase tracking-widest flex items-center gap-3 group shadow-xl hover:shadow-indigo-200/50 transition-all duration-500"
-                    >
-                        <span className="relative z-10">Connect Now</span>
-                        <ArrowRight size={16} className="relative z-10 transition-transform duration-500 group-hover:translate-x-1" />
-                        {/* Subtle Shine Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                    </motion.button>
-                </div>
+//                                 {/* Elegant Underline Logic */}
+//                                 <span className={`absolute -bottom-1 left-0 h-[2px] transition-all duration-500 ease-out ${link.name === 'Home'
+//                                         ? 'w-full bg-[#f89623]'
+//                                         : 'w-0 bg-indigo-600 group-hover:w-full'
+//                                     }`}></span>
+//                             </a>
+//                         ))}
+//                     </div>
+//                     {/* hnfhjhhjhdshd?jfdhfdjjdf jksdpsd sduji f dorie fmm  ksdofire fd hdff dfdj      fh */}
 
-                {/* 4. MOBILE TOGGLE (Custom Icon) */}
-                <div className="md:hidden">
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="text-slate-900 p-2 focus:outline-none"
-                    >
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={isOpen ? 'close' : 'open'}
-                                initial={{ opacity: 0, rotate: -90 }}
-                                animate={{ opacity: 1, rotate: 0 }}
-                                exit={{ opacity: 0, rotate: 90 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                {isOpen ? <X size={32} strokeWidth={2.5} /> : <Menu size={32} strokeWidth={2.5} />}
-                            </motion.div>
-                        </AnimatePresence>
-                    </button>
-                </div>
-            </div>
+//                     {/* 3. PREMIUM CTA BUTTON */}
+//                     <motion.button
+//                         whileHover={{ scale: 1.02 }}
+//                         whileTap={{ scale: 0.98 }}
+//                         className="relative overflow-hidden bg-[#0C1C2C] text-white px-8 py-3.5 rounded-full text-[13px] font-black uppercase tracking-widest flex items-center gap-3 group shadow-xl hover:shadow-indigo-200/50 transition-all duration-500"
+//                     >
+//                         <span className="relative z-10">Connect Now</span>
+//                         <ArrowRight size={16} className="relative z-10 transition-transform duration-500 group-hover:translate-x-1" />
+//                         {/* Subtle Shine Effect */}
+//                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+//                     </motion.button>
+//                 </div>
 
-            {/* 5. PREMIUM MOBILE MENU OVERLAY */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-2xl border-t border-slate-100 shadow-2xl overflow-hidden"
-                    >
-                        <div className="flex flex-col p-8 space-y-6">
-                            {navLinks.map((link, index) => (
-                                <motion.a
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    key={link.name}
-                                    href={`#${link.id}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className="text-2xl font-black text-[#0C1C2C] uppercase tracking-tighter hover:text-indigo-600 transition-colors"
-                                >
-                                    {link.name}
-                                </motion.a>
-                            ))}
-                            <button className="bg-[#0C1C2C] text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-lg">
-                                Connect Now
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </nav>
-    );
-};
+//                 {/* 4. MOBILE TOGGLE (Custom Icon) */}
+//                 <div className="md:hidden">
+//                     <button
+//                         onClick={() => setIsOpen(!isOpen)}
+//                         className="text-slate-900 p-2 focus:outline-none"
+//                     >
+//                         <AnimatePresence mode="wait">
+//                             <motion.div
+//                                 key={isOpen ? 'close' : 'open'}
+//                                 initial={{ opacity: 0, rotate: -90 }}
+//                                 animate={{ opacity: 1, rotate: 0 }}
+//                                 exit={{ opacity: 0, rotate: 90 }}
+//                                 transition={{ duration: 0.2 }}
+//                             >
+//                                 {isOpen ? <X size={32} strokeWidth={2.5} /> : <Menu size={32} strokeWidth={2.5} />}
+//                             </motion.div>
+//                         </AnimatePresence>
+//                     </button>
+//                 </div>
+//             </div>
+
+//             {/* 5. PREMIUM MOBILE MENU OVERLAY */}
+//             <AnimatePresence>
+//                 {isOpen && (
+//                     <motion.div
+//                         initial={{ opacity: 0, y: -20 }}
+//                         animate={{ opacity: 1, y: 0 }}
+//                         exit={{ opacity: 0, y: -20 }}
+//                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+//                         className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-2xl border-t border-slate-100 shadow-2xl overflow-hidden"
+//                     >
+//                         <div className="flex flex-col p-8 space-y-6">
+//                             {navLinks.map((link, index) => (
+//                                 <motion.a
+//                                     initial={{ opacity: 0, x: -20 }}
+//                                     animate={{ opacity: 1, x: 0 }}
+//                                     transition={{ delay: index * 0.1 }}
+//                                     key={link.name}
+//                                     href={`#${link.id}`}
+//                                     onClick={() => setIsOpen(false)}
+//                                     className="text-2xl font-black text-[#0C1C2C] uppercase tracking-tighter hover:text-indigo-600 transition-colors"
+//                                 >
+//                                     {link.name}
+//                                 </motion.a>
+//                             ))}
+//                             <button className="bg-[#0C1C2C] text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-lg">
+//                                 Connect Now
+//                             </button>
+//                         </div>
+//                     </motion.div>
+//                 )}
+//             </AnimatePresence>
+//         </nav>
+//     );
+// };
 
 const Home = () => {
     const services = [
@@ -203,6 +214,36 @@ const Home = () => {
         { title: "Customer Experience", icon: <Users />, desc: "Strategic management to elevate satisfaction and brand loyalty." },
         { title: "Sales & Lead Generation", icon: <TrendingUp />, desc: "Driving exponential business growth through targeted lead acquisition." },
         { title: "Collection Services", icon: <ShieldCheck />, desc: "Ethical and professional follow-up & collection recovery services." },
+         { 
+        title: "IT Infrastructure Support", 
+        icon: <Server />, 
+        desc: "Reliable infrastructure and end-to-end technology support to ensure uninterrupted BPO operations." 
+    },
+    { 
+        title: "CRM & Dialer Setup", 
+        icon: <PhoneCall />, 
+        desc: "Deploying and managing industry-leading CRM systems and auto-dialers to maximize productivity." 
+    },
+    { 
+        title: "Cloud & Remote Solutions", 
+        icon: <Cloud />, 
+        desc: "Secure cloud-based environments supporting remote and hybrid BPO teams with seamless scalability." 
+    },
+    { 
+        title: "Security & Compliance", 
+        icon: <Lock />, 
+        desc: "Strict data protection standards to safeguard client information and meet international outsourcing requirements." 
+    },
+    { 
+        title: "System Monitoring", 
+        icon: <Activity />, 
+        desc: "Dedicated IT support monitoring systems to prevent downtime and ensure smooth 24/7 operations." 
+    },
+    { 
+        title: "Software Automation", 
+        icon: <Cpu />, 
+        desc: "Integrating applications and automating workflows to improve efficiency and turnaround time." 
+    },
     ];
 
     return (
@@ -466,7 +507,7 @@ const Home = () => {
             </section>
 
             {/* 3. SERVICES SECTION */}
-            <section id="services" className="py-32 px-6 lg:px-12 bg-[#0C1C2C] text-white rounded-[5rem] mx-4 relative overflow-hidden">
+            {/* <section id="services" className="py-32 px-6 lg:px-12 bg-[#0C1C2C] text-white rounded-[5rem] mx-4 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto relative z-10">
                     <div className="max-w-2xl mb-20">
                         <h2 className="text-5xl lg:text-7xl font-black mb-6">Expert <br /> <span className="text-[#57C1CC]">Our Services</span></h2>
@@ -483,7 +524,55 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
+
+            <section id="services" className="py-32 px-6 lg:px-12 bg-[#0C1C2C] text-white rounded-[5rem] mx-4 relative overflow-hidden">
+    {/* Decorative Background Glow */}
+    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#57C1CC]/10 rounded-full blur-[120px] -z-0"></div>
+    
+    <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-3xl mb-20">
+            <motion.span 
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+                className="text-[#57C1CC] font-black uppercase tracking-[0.4em] text-xs mb-4 block"
+            >
+                End-to-End Solutions
+            </motion.span>
+            <h2 className="text-5xl lg:text-7xl font-black mb-6">
+                Process & <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#57C1CC] to-indigo-400">
+                    Technology Services.
+                </span>
+            </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((s, i) => (
+                <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    whileHover={{ y: -15 }} 
+                    className="p-10 rounded-[3.5rem] bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all duration-500 group cursor-default"
+                >
+                    <div className="w-16 h-16 rounded-2xl bg-[#57C1CC]/20 text-[#57C1CC] flex items-center justify-center mb-10 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-lg">
+                        {React.cloneElement(s.icon, { size: 28 })}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 tracking-tight">{s.title}</h3>
+                    <p className="opacity-60 text-sm leading-relaxed group-hover:opacity-80 font-medium">
+                        {s.desc}
+                    </p>
+                    
+                    {/* Subtle arrow that appears on hover */}
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0">
+                        <ArrowRight size={20} className="text-indigo-600" />
+                    </div>
+                </motion.div>
+            ))}
+        </div>
+    </div>
+</section>
 
             {/* 4. WHY CHOOSE US SECTION (CONTENT ADDED HERE) */}
             {/* <section className="py-32 px-6 lg:px-12 max-w-7xl mx-auto">
@@ -743,14 +832,14 @@ const Home = () => {
                         </div>
 
                         {/* 4. COMPANY INFO */}
-                        <div className="space-y-10">
+                        {/* <div className="space-y-10">
                             <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#57C1CC]">Company Information</h4>
                             <div className="space-y-6 text-[15px] font-medium text-slate-300">
                                 <div className="flex gap-4 items-start group cursor-pointer">
                                     <div className="p-3 rounded-xl bg-white/5 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
                                         <MapPin size={20} />
                                     </div>
-                                    <p className="leading-relaxed">Khairat Ahmad Road,<br />Piperpanti, Gaya, Bihar</p>
+                                    <p className="leading-relaxed">Gaya, Bihar, India</p>
                                 </div>
                                 <div className="flex gap-4 items-start group cursor-pointer">
                                     <div className="p-3 rounded-xl bg-white/5 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
@@ -764,6 +853,60 @@ const Home = () => {
                                     </div>
                                     <p>+91 7295954384</p>
                                 </div>
+                            </div>
+                        </div> */}
+                        {/* 4. COMPANY INFO */}
+                        <div className="space-y-10">
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#57C1CC]">Company Information</h4>
+                            <div className="space-y-6 text-[15px] font-medium text-slate-300">
+
+                                {/* Updated Address with Flag */}
+                                <div className="flex gap-4 items-start group cursor-pointer">
+                                    <div className="p-3 rounded-xl bg-white/5 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                        <MapPin size={20} />
+                                    </div>
+                                    <p className="leading-relaxed flex items-center gap-2">
+                                        Gaya, Bihar, India
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" className="w-6 h-4 rounded-sm shadow-sm">
+                                            <path fill="#f93" d="M0 0h640v160H0z" />
+                                            <path fill="#fff" d="M0 160h640v160H0z" />
+                                            <path fill="#128807" d="M0 320h640v160H0z" />
+                                            <g transform="translate(320 240)">
+                                                <circle r="70" fill="none" stroke="#000080" strokeWidth="8" />
+                                                <g id="d">
+                                                    <g id="c">
+                                                        <g id="b">
+                                                            <g id="a">
+                                                                <circle r="7" fill="#000080" transform="rotate(7.5) translate(0 -70)" />
+                                                                <path fill="#000080" d="M0 0l3 11 3-11z" transform="rotate(7.5) translate(0 -70)" />
+                                                            </g>
+                                                            <use href="#a" transform="rotate(15)" />
+                                                        </g>
+                                                        <use href="#b" transform="rotate(30)" />
+                                                    </g>
+                                                    <use href="#c" transform="rotate(60)" />
+                                                </g>
+                                                <use href="#d" transform="rotate(120)" />
+                                                <use href="#d" transform="rotate(240)" />
+                                            </g>
+                                        </svg>
+                                    </p>
+                                </div>
+
+                                <div className="flex gap-4 items-start group cursor-pointer">
+                                    <div className="p-3 rounded-xl bg-white/5 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                        <Mail size={20} />
+                                    </div>
+                                    <p className="break-all">ceo@skillbridgeconsultingindia.in</p>
+                                </div>
+
+                                <div className="flex gap-4 items-start group cursor-pointer">
+                                    <div className="p-3 rounded-xl bg-white/5 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                        <Phone size={20} />
+                                    </div>
+                                    <p>+91 7295954384</p>
+                                </div>
+
                             </div>
                         </div>
 
