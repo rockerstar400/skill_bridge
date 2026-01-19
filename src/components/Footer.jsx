@@ -28,7 +28,7 @@ const Footer = () => {
                         <p className="text-slate-400 font-medium">Let's build your operational excellence together.</p>
                     </div>
                     <button className="mt-8 md:mt-0 bg-[#F99D2B] text-white px-10 py-4 rounded-full font-bold shadow-xl hover:scale-105 transition-transform">
-                        Start a Conversation
+                        Get a Start
                     </button>
                 </motion.div>
 
@@ -187,7 +187,7 @@ const Footer = () => {
                     <div className="space-y-10">
                         <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#57C1CC]">Expertise</h4>
                         <ul className="space-y-5 text-[15px] font-bold text-slate-400">
-                            {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((link) => (
+                            {['Home', 'About', 'Services',  'Contact'].map((link) => (
                                 <li key={link}>
                                     <a
                                         href={`#${link.toLowerCase()}`}

@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logo from "./assets/logo.png";
 import { Link } from 'react-router-dom';
 import Header from "./components/Header"
+import { NavHashLink } from 'react-router-hash-link';
 import {
     Headphones, Database, MessageSquare, Users,
     TrendingUp, ShieldCheck, Mail, Phone, MapPin,
@@ -352,10 +353,18 @@ const Home = () => {
 
                         {/* Buttons & Stats Link */}
                         <motion.div variants={fadeInUp} className="mt-12 flex flex-wrap items-center gap-8">
-                            <button className="bg-[#0C1C2C] text-white px-12 py-5 rounded-2xl font-bold text-lg shadow-[0_20px_40px_-10px_rgba(12,28,44,0.4)] hover:bg-indigo-600 hover:translate-y-[-5px] transition-all duration-300 flex items-center gap-4 group">
+                            {/* <button className="bg-[#0C1C2C] text-white px-12 py-5 rounded-2xl font-bold text-lg shadow-[0_20px_40px_-10px_rgba(12,28,44,0.4)] hover:bg-indigo-600 hover:translate-y-[-5px] transition-all duration-300 flex items-center gap-4 group">
                                 View Services
                                 <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
-                            </button>
+                            </button> */}
+                            <NavHashLink 
+    smooth 
+    to="/#services" 
+    className="bg-[#0C1C2C] text-white px-12 py-5 rounded-2xl font-bold text-lg shadow-[0_20px_40px_-10px_rgba(12,28,44,0.4)] hover:bg-indigo-600 hover:translate-y-[-5px] transition-all duration-300 flex items-center gap-4 group cursor-pointer inline-flex"
+>
+    View Services
+    <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
+</NavHashLink>
 
                             <div className="flex items-center gap-4 group cursor-pointer">
                                 <div className="flex -space-x-3">
@@ -494,14 +503,14 @@ const Home = () => {
                             </motion.div>
                         </div>
 
-                        <motion.button
+                        {/* <motion.button
                             variants={fadeInUp}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="mt-12 bg-[#F99D2B] text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-orange-100 hover:bg-[#e88d1a] transition-all"
                         >
                             Read More
-                        </motion.button>
+                        </motion.button> */}
                     </motion.div>
                 </div>
             </section>
@@ -755,7 +764,7 @@ const Home = () => {
                             <p className="text-slate-400 font-medium">Let's build your operational excellence together.</p>
                         </div>
                         <button className="mt-8 md:mt-0 bg-[#F99D2B] text-white px-10 py-4 rounded-full font-bold shadow-xl hover:scale-105 transition-transform">
-                            Start a Conversation
+                            Get a Start
                         </button>
                     </motion.div>
 
@@ -914,7 +923,7 @@ const Home = () => {
                         <div className="space-y-10">
                             <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#57C1CC]">Expertise</h4>
                             <ul className="space-y-5 text-[15px] font-bold text-slate-400">
-                                {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((link) => (
+                                {['Home', 'About', 'Services',  'Contact'].map((link) => (
                                     <li key={link}>
                                         <a
                                             href={`#${link.toLowerCase()}`}
